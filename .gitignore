@@ -1,0 +1,6 @@
+build/externalLibs/*
+
+
+*.pref
+done.txt
+*.ser
