@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Controller_2d_FlowParametrization">
+   <top>
+      <VBox maxHeight="300.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar BorderPane.alignment="CENTER">
+               <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                     <items>
+                        <Menu mnemonicParsing="false" text="New Project">
+                          <items>
+                            <MenuItem fx:id="menuNewImage" mnemonicParsing="false" onAction="#handleMenuNewImage" text="Image" />
+                              <MenuItem fx:id="menuNewVideo" mnemonicParsing="false" onAction="#handleMenuNewVideo" text="Video" />
+                          </items>
+                        </Menu>
+                        <MenuItem mnemonicParsing="false" onAction="#handleCheckProgress" text="Check Progress" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleReinitialize" text="Reinitialize" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleClose" text="Close" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Help">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <GridPane GridPane.columnIndex="1">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="ALWAYS" maxWidth="30.0" minWidth="0.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label fx:id="lblInfo" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="358.0" text="Optical Flow Configuration" GridPane.columnIndex="3" GridPane.columnSpan="8" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="8" GridPane.rowIndex="2">
+                     <children>
+                        <Label text="Group Name: ">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="groupLabel" text="lbl" HBox.hgrow="SOMETIMES">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="8" GridPane.rowIndex="3">
+                     <children>
+                        <Label text="Group:" HBox.hgrow="ALWAYS" />
+                        <Slider fx:id="sliderGroups" HBox.hgrow="SOMETIMES" />
+                        <Label fx:id="lblGroupId" text="1" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.columnSpan="3" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.rowSpan="2">
+                     <children>
+                        <Label text="Pixel Size:" />
+                        <ComboBox fx:id="cmbPolyN">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin></ComboBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.rowSpan="2">
+                     <children>
+                        <Label text="Window Size:" />
+                        <TextField fx:id="txtWinSize" alignment="CENTER" maxWidth="50.0" text="15">
+                           <tooltip>
+                              <Tooltip text="Averaging window size; larger values increase the algorithm robustness to image noise and give more chances for fast motion detection, but yield more blurred motion field." />
+                           </tooltip>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <Button id="dark-blue" fx:id="btnSaveSet" mnemonicParsing="false" onAction="#handleForAllSave" prefHeight="35.0" stylesheets="@button_styles.css" text="Save for All Groups" GridPane.columnIndex="5" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></Button>
+                <TitledPane fx:id="titlePane" animated="false" text="Advanced Parameters" GridPane.columnIndex="3" GridPane.columnSpan="8" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.rowSpan="5" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" />
+                     </GridPane.margin>
+                     <content>
+                        <GridPane>
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Pyramids Scale:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                              <Label text="Levels:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                              <Label text="Iterations:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                              <Label text="Sigma:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtPyrScale" alignment="CENTER" maxWidth="50.0" text="0.5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                                 <tooltip>
+                                    <Tooltip text="Parameter, specifying the image scale (&lt;1) to build pyramids for each image; pyr_scale=0.5 means a classical pyramid, where each next layer is twice smaller than the previous one" />
+                                 </tooltip>
+                              </TextField>
+                              <TextField fx:id="txtLevels" alignment="CENTER" maxWidth="50.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                                 <tooltip>
+                                    <Tooltip text="Number of pyramid layers including the initial image; levels=1 means that no extra layers are created and only the original images are used." />
+                                 </tooltip>
+                              </TextField>
+                              <TextField fx:id="txtIterations" alignment="CENTER" maxWidth="50.0" text="1" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                                 <tooltip>
+                                    <Tooltip text="Number of iterations the algorithm does at each pyramid level." />
+                                 </tooltip>
+                              </TextField>
+                              <TextField fx:id="txtPolySigma" alignment="CENTER" maxWidth="50.0" text="1.1" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                                 <tooltip>
+                                    <Tooltip text="Standard deviation of the Gaussian that is used to smooth derivatives used as a basis for the polynomial expansion." />
+                                 </tooltip>
+                              </TextField>
+                              <Label text="Number Of Cores:" GridPane.columnSpan="2" GridPane.halignment="RIGHT" />
+                              <TextField fx:id="txtNcores" alignment="CENTER" maxWidth="50.0" text="1" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                           </children>
+                        </GridPane>
+                     </content>
+                </TitledPane>
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+   </center>
+   <bottom>
+      <BorderPane BorderPane.alignment="CENTER">
+         <right>
+            <Button id="glass-grey" fx:id="cmdParametrize" mnemonicParsing="false" onAction="#handleMethodStartRun" prefHeight="45.0" prefWidth="45.0" stylesheets="@button_styles.css" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="30.0" right="80.0" />
+               </BorderPane.margin>
+            </Button>
+         </right>
+         <left>
+            <Button id="glass-grey" fx:id="cmdBack" mnemonicParsing="false" onAction="#back" prefHeight="45.0" prefWidth="45.0" stylesheets="@button_styles.css" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="30.0" left="80.0" />
+               </BorderPane.margin>
+            </Button>
+         </left>
+      </BorderPane>
+   </bottom>
+</BorderPane>

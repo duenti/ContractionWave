@@ -1,0 +1,1155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<project name="TestFX2" default="do-deploy" basedir="."  xmlns:fx="javafx:com.sun.javafx.tools.ant">
+	<target name="init-fx-tasks">
+		<path id="fxant">
+			<filelist>
+				<file name="${java.home}\..\lib\ant-javafx.jar"/>
+				<file name="${java.home}\lib\jfxrt.jar"/>
+			</filelist>
+		</path>
+	
+		<taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
+			uri="javafx:com.sun.javafx.tools.ant"
+			classpathref="fxant"/>
+	</target>
+	<target name="setup-staging-area">
+		<delete dir="externalLibs" />
+		<delete dir="project" />
+		<delete dir="projectRefs" />
+	
+		<mkdir dir="externalLibs" />
+	
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flycapture/2.11.3.121-1.4.3">
+				<filename name="flycapture-2.11.3.121-1.4.3-linux-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/gluegen/gluegen-rt/2.3.2">
+				<filename name="gluegen-rt-2.3.2-natives-macosx-universal.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/ffmpeg/4.0.2-1.4.3">
+				<filename name="ffmpeg-4.0.2-1.4.3-linux-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/opencv/3.4.3-1.4.3">
+				<filename name="opencv-3.4.3-1.4.3-android-arm64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/jogl/jogl-all/2.3.2">
+				<filename name="jogl-all-2.3.2-natives-macosx-universal.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/opencv/3.4.3-1.4.3">
+				<filename name="opencv-3.4.3-1.4.3-linux-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flandmark-platform/1.07-1.4.3">
+				<filename name="flandmark-platform-1.07-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libdc1394/2.2.5-1.4.3">
+				<filename name="libdc1394-2.2.5-1.4.3-windows-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/artoolkitplus/2.3.1-1.4.3">
+				<filename name="artoolkitplus-2.3.1-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/tesseract/4.0.0-rc2-1.4.3">
+				<filename name="tesseract-4.0.0-rc2-1.4.3-android-arm.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/jogl/jogl-all/2.3.2">
+				<filename name="jogl-all-2.3.2-natives-android-armv6.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libdc1394/2.2.5-1.4.3">
+				<filename name="libdc1394-2.2.5-1.4.3-linux-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/gluegen/gluegen-rt/2.3.2">
+				<filename name="gluegen-rt-2.3.2-natives-android-armv6.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/leptonica/1.76.0-1.4.3">
+				<filename name="leptonica-1.76.0-1.4.3-windows-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/opencv/3.4.3-1.4.3">
+				<filename name="opencv-3.4.3-1.4.3-windows-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/jogl/jogl-all-main/2.3.2">
+				<filename name="jogl-all-main-2.3.2.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libdc1394/2.2.5-1.4.3">
+				<filename name="libdc1394-2.2.5-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/leptonica/1.76.0-1.4.3">
+				<filename name="leptonica-1.76.0-1.4.3-android-arm64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/tesseract/4.0.0-rc2-1.4.3">
+				<filename name="tesseract-4.0.0-rc2-1.4.3-linux-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/opencv/3.4.3-1.4.3">
+				<filename name="opencv-3.4.3-1.4.3-linux-ppc64le.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/io/humble/humble-video-noarch/0.3.0">
+				<filename name="humble-video-noarch-0.3.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/jogl/jogl-all/2.3.2">
+				<filename name="jogl-all-2.3.2-natives-windows-amd64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/jogl/jogl-all/2.3.2">
+				<filename name="jogl-all-2.3.2-natives-linux-i586.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/ffmpeg/4.0.2-1.4.3">
+				<filename name="ffmpeg-4.0.2-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/opencv/3.4.3-1.4.3">
+				<filename name="opencv-3.4.3-1.4.3-macosx-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/io/humble/humble-video-arch-x86_64-w64-mingw32/0.3.0">
+				<filename name="humble-video-arch-x86_64-w64-mingw32-0.3.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/jogl/jogl-all/2.3.2">
+				<filename name="jogl-all-2.3.2-natives-windows-i586.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/opencv/3.4.3-1.4.3">
+				<filename name="opencv-3.4.3-1.4.3-android-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/apache/commons/commons-collections4/4.2">
+				<filename name="commons-collections4-4.2.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/jogl/jogl-all/2.3.2">
+				<filename name="jogl-all-2.3.2.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libfreenect/0.5.3-1.4.3">
+				<filename name="libfreenect-0.5.3-1.4.3-macosx-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/gluegen/gluegen-rt/2.3.2">
+				<filename name="gluegen-rt-2.3.2-natives-solaris-i586.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacv/1.4.3">
+				<filename name="javacv-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/jogl/jogl-all/2.3.2">
+				<filename name="jogl-all-2.3.2-natives-solaris-amd64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/artoolkitplus-platform/2.3.1-1.4.3">
+				<filename name="artoolkitplus-platform-2.3.1-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/gluegen/gluegen-rt/2.3.2">
+				<filename name="gluegen-rt-2.3.2-natives-solaris-amd64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/librealsense/1.12.1-1.4.3">
+				<filename name="librealsense-1.12.1-1.4.3-windows-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/log4j/log4j/1.2.17">
+				<filename name="log4j-1.2.17.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/gluegen/gluegen-rt/2.3.2">
+				<filename name="gluegen-rt-2.3.2-natives-windows-i586.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/tesseract/4.0.0-rc2-1.4.3">
+				<filename name="tesseract-4.0.0-rc2-1.4.3-macosx-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/artoolkitplus/2.3.1-1.4.3">
+				<filename name="artoolkitplus-2.3.1-1.4.3-android-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/gluegen/gluegen-rt/2.3.2">
+				<filename name="gluegen-rt-2.3.2-natives-linux-amd64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/artoolkitplus/2.3.1-1.4.3">
+				<filename name="artoolkitplus-2.3.1-1.4.3-android-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/librealsense-platform/1.12.1-1.4.3">
+				<filename name="librealsense-platform-1.12.1-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/edu/mines/jtk/edu-mines-jtk/1.1.0">
+				<filename name="edu-mines-jtk-1.1.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/gluegen/gluegen-rt/2.3.2">
+				<filename name="gluegen-rt-2.3.2-natives-android-aarch64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/artoolkitplus/2.3.1-1.4.3">
+				<filename name="artoolkitplus-2.3.1-1.4.3-linux-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/librealsense/1.12.1-1.4.3">
+				<filename name="librealsense-1.12.1-1.4.3-windows-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flandmark/1.07-1.4.3">
+				<filename name="flandmark-1.07-1.4.3-windows-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/leptonica/1.76.0-1.4.3">
+				<filename name="leptonica-1.76.0-1.4.3-macosx-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libfreenect2/0.2.0-1.4.3">
+				<filename name="libfreenect2-0.2.0-1.4.3-linux-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/gluegen/gluegen-rt/2.3.2">
+				<filename name="gluegen-rt-2.3.2.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/videoinput/0.200-1.4.3">
+				<filename name="videoinput-0.200-1.4.3-windows-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/jogl/jogl-all/2.3.2">
+				<filename name="jogl-all-2.3.2-natives-linux-armv6hf.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libfreenect/0.5.3-1.4.3">
+				<filename name="libfreenect-0.5.3-1.4.3-linux-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libfreenect/0.5.3-1.4.3">
+				<filename name="libfreenect-0.5.3-1.4.3-linux-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libfreenect2/0.2.0-1.4.3">
+				<filename name="libfreenect2-0.2.0-1.4.3-linux-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacv-platform/1.4.3">
+				<filename name="javacv-platform-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/artoolkitplus/2.3.1-1.4.3">
+				<filename name="artoolkitplus-2.3.1-1.4.3-windows-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/opencv/3.4.3-1.4.3">
+				<filename name="opencv-3.4.3-1.4.3-ios-arm64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/leptonica/1.76.0-1.4.3">
+				<filename name="leptonica-1.76.0-1.4.3-android-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/slf4j/slf4j-api/1.7.5">
+				<filename name="slf4j-api-1.7.5.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/commons-codec/commons-codec/1.10">
+				<filename name="commons-codec-1.10.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/leptonica/1.76.0-1.4.3">
+				<filename name="leptonica-1.76.0-1.4.3-linux-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/videoinput-platform/0.200-1.4.3">
+				<filename name="videoinput-platform-0.200-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flandmark/1.07-1.4.3">
+				<filename name="flandmark-1.07-1.4.3-android-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jfree/jfreechart/1.5.0">
+				<filename name="jfreechart-1.5.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/artoolkitplus/2.3.1-1.4.3">
+				<filename name="artoolkitplus-2.3.1-1.4.3-windows-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flandmark/1.07-1.4.3">
+				<filename name="flandmark-1.07-1.4.3-android-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flandmark/1.07-1.4.3">
+				<filename name="flandmark-1.07-1.4.3-windows-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flycapture/2.11.3.121-1.4.3">
+				<filename name="flycapture-2.11.3.121-1.4.3-windows-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/net/sourceforge/f2j/arpack_combined_all/0.1">
+				<filename name="arpack_combined_all-0.1.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/ffmpeg/4.0.2-1.4.3">
+				<filename name="ffmpeg-4.0.2-1.4.3-macosx-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/apache/poi/poi/4.0.0">
+				<filename name="poi-4.0.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/io/humble/humble-video-arch-x86_64-pc-linux-gnu6/0.3.0">
+				<filename name="humble-video-arch-x86_64-pc-linux-gnu6-0.3.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libdc1394/2.2.5-1.4.3">
+				<filename name="libdc1394-2.2.5-1.4.3-linux-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flycapture/2.11.3.121-1.4.3">
+				<filename name="flycapture-2.11.3.121-1.4.3-windows-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libfreenect2/0.2.0-1.4.3">
+				<filename name="libfreenect2-0.2.0-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/slf4j/slf4j-log4j12/1.7.5">
+				<filename name="slf4j-log4j12-1.7.5.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/leptonica/1.76.0-1.4.3">
+				<filename name="leptonica-1.76.0-1.4.3-android-arm.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/tesseract/4.0.0-rc2-1.4.3">
+				<filename name="tesseract-4.0.0-rc2-1.4.3-android-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/ffmpeg/4.0.2-1.4.3">
+				<filename name="ffmpeg-4.0.2-1.4.3-linux-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/artoolkitplus/2.3.1-1.4.3">
+				<filename name="artoolkitplus-2.3.1-1.4.3-macosx-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/io/humble/humble-video-arch-i686-w64-mingw32/0.3.0">
+				<filename name="humble-video-arch-i686-w64-mingw32-0.3.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flycapture/2.11.3.121-1.4.3">
+				<filename name="flycapture-2.11.3.121-1.4.3-linux-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/artoolkitplus/2.3.1-1.4.3">
+				<filename name="artoolkitplus-2.3.1-1.4.3-linux-ppc64le.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/com/github/wendykierp/JTransforms/3.1">
+				<filename name="JTransforms-3.1-with-dependencies.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libdc1394/2.2.5-1.4.3">
+				<filename name="libdc1394-2.2.5-1.4.3-windows-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp/1.4.3">
+				<filename name="javacpp-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/gluegen/gluegen-rt/2.3.2">
+				<filename name="gluegen-rt-2.3.2-natives-linux-i586.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/tesseract/4.0.0-rc2-1.4.3">
+				<filename name="tesseract-4.0.0-rc2-1.4.3-windows-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libfreenect/0.5.3-1.4.3">
+				<filename name="libfreenect-0.5.3-1.4.3-linux-armhf.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/librealsense/1.12.1-1.4.3">
+				<filename name="librealsense-1.12.1-1.4.3-macosx-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/librealsense/1.12.1-1.4.3">
+				<filename name="librealsense-1.12.1-1.4.3-linux-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/opencv/3.4.3-1.4.3">
+				<filename name="opencv-3.4.3-1.4.3-ios-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/librealsense/1.12.1-1.4.3">
+				<filename name="librealsense-1.12.1-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/ffmpeg-platform/4.0.2-1.4.3">
+				<filename name="ffmpeg-platform-4.0.2-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libdc1394/2.2.5-1.4.3">
+				<filename name="libdc1394-2.2.5-1.4.3-linux-armhf.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flandmark/1.07-1.4.3">
+				<filename name="flandmark-1.07-1.4.3-linux-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flandmark/1.07-1.4.3">
+				<filename name="flandmark-1.07-1.4.3-macosx-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/leptonica/1.76.0-1.4.3">
+				<filename name="leptonica-1.76.0-1.4.3-windows-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/ffmpeg/4.0.2-1.4.3">
+				<filename name="ffmpeg-4.0.2-1.4.3-linux-armhf.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/artoolkitplus/2.3.1-1.4.3">
+				<filename name="artoolkitplus-2.3.1-1.4.3-linux-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flandmark/1.07-1.4.3">
+				<filename name="flandmark-1.07-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/videoinput/0.200-1.4.3">
+				<filename name="videoinput-0.200-1.4.3-windows-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/opencv/3.4.3-1.4.3">
+				<filename name="opencv-3.4.3-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flandmark/1.07-1.4.3">
+				<filename name="flandmark-1.07-1.4.3-linux-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/videoinput/0.200-1.4.3">
+				<filename name="videoinput-0.200-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libfreenect/0.5.3-1.4.3">
+				<filename name="libfreenect-0.5.3-1.4.3-linux-ppc64le.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/tesseract/4.0.0-rc2-1.4.3">
+				<filename name="tesseract-4.0.0-rc2-1.4.3-linux-armhf.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/leptonica/1.76.0-1.4.3">
+				<filename name="leptonica-1.76.0-1.4.3-android-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libfreenect-platform/0.5.3-1.4.3">
+				<filename name="libfreenect-platform-0.5.3-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flandmark/1.07-1.4.3">
+				<filename name="flandmark-1.07-1.4.3-linux-ppc64le.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/jogl/jogl-all/2.3.2">
+				<filename name="jogl-all-2.3.2-natives-solaris-i586.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libdc1394/2.2.5-1.4.3">
+				<filename name="libdc1394-2.2.5-1.4.3-macosx-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/artoolkitplus/2.3.1-1.4.3">
+				<filename name="artoolkitplus-2.3.1-1.4.3-android-arm.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libdc1394/2.2.5-1.4.3">
+				<filename name="libdc1394-2.2.5-1.4.3-linux-ppc64le.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flycapture/2.11.3.121-1.4.3">
+				<filename name="flycapture-2.11.3.121-1.4.3-linux-armhf.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/artoolkitplus/2.3.1-1.4.3">
+				<filename name="artoolkitplus-2.3.1-1.4.3-android-arm64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/jogl/jogl-all/2.3.2">
+				<filename name="jogl-all-2.3.2-natives-linux-amd64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/tesseract-platform/4.0.0-rc2-1.4.3">
+				<filename name="tesseract-platform-4.0.0-rc2-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libfreenect/0.5.3-1.4.3">
+				<filename name="libfreenect-0.5.3-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/ffmpeg/4.0.2-1.4.3">
+				<filename name="ffmpeg-4.0.2-1.4.3-android-arm.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/leptonica/1.76.0-1.4.3">
+				<filename name="leptonica-1.76.0-1.4.3-linux-ppc64le.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/tesseract/4.0.0-rc2-1.4.3">
+				<filename name="tesseract-4.0.0-rc2-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/artoolkitplus/2.3.1-1.4.3">
+				<filename name="artoolkitplus-2.3.1-1.4.3-linux-armhf.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/ffmpeg/4.0.2-1.4.3">
+				<filename name="ffmpeg-4.0.2-1.4.3-android-arm64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/gluegen/gluegen-rt-main/2.3.2">
+				<filename name="gluegen-rt-main-2.3.2.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/leptonica-platform/1.76.0-1.4.3">
+				<filename name="leptonica-platform-1.76.0-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flandmark/1.07-1.4.3">
+				<filename name="flandmark-1.07-1.4.3-android-arm.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/gluegen/gluegen-rt/2.3.2">
+				<filename name="gluegen-rt-2.3.2-natives-windows-amd64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/ffmpeg/4.0.2-1.4.3">
+				<filename name="ffmpeg-4.0.2-1.4.3-android-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libfreenect2/0.2.0-1.4.3">
+				<filename name="libfreenect2-0.2.0-1.4.3-windows-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/opencv/3.4.3-1.4.3">
+				<filename name="opencv-3.4.3-1.4.3-android-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/com/googlecode/netlib-java/netlib-java/0.9.3">
+				<filename name="netlib-java-0.9.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libfreenect/0.5.3-1.4.3">
+				<filename name="libfreenect-0.5.3-1.4.3-windows-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/opencv/3.4.3-1.4.3">
+				<filename name="opencv-3.4.3-1.4.3-linux-armhf.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/tesseract/4.0.0-rc2-1.4.3">
+				<filename name="tesseract-4.0.0-rc2-1.4.3-linux-ppc64le.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/tesseract/4.0.0-rc2-1.4.3">
+				<filename name="tesseract-4.0.0-rc2-1.4.3-linux-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/opencv/3.4.3-1.4.3">
+				<filename name="opencv-3.4.3-1.4.3-windows-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/commons-io/commons-io/2.4">
+				<filename name="commons-io-2.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/gluegen/gluegen-rt/2.3.2">
+				<filename name="gluegen-rt-2.3.2-natives-linux-armv6.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/ffmpeg/4.0.2-1.4.3">
+				<filename name="ffmpeg-4.0.2-1.4.3-windows-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/ffmpeg/4.0.2-1.4.3">
+				<filename name="ffmpeg-4.0.2-1.4.3-android-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/ffmpeg/4.0.2-1.4.3">
+				<filename name="ffmpeg-4.0.2-1.4.3-windows-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/io/humble/humble-video-all/0.3.0">
+				<filename name="humble-video-all-0.3.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flandmark/1.07-1.4.3">
+				<filename name="flandmark-1.07-1.4.3-android-arm64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libfreenect2/0.2.0-1.4.3">
+				<filename name="libfreenect2-0.2.0-1.4.3-macosx-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/gluegen/gluegen-rt/2.3.2">
+				<filename name="gluegen-rt-2.3.2-natives-linux-armv6hf.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flandmark/1.07-1.4.3">
+				<filename name="flandmark-1.07-1.4.3-linux-armhf.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/leptonica/1.76.0-1.4.3">
+				<filename name="leptonica-1.76.0-1.4.3-linux-x86_64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libdc1394-platform/2.2.5-1.4.3">
+				<filename name="libdc1394-platform-2.2.5-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/leptonica/1.76.0-1.4.3">
+				<filename name="leptonica-1.76.0-1.4.3-linux-armhf.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/pl/edu/icm/JLargeArrays/1.5">
+				<filename name="JLargeArrays-1.5.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/tesseract/4.0.0-rc2-1.4.3">
+				<filename name="tesseract-4.0.0-rc2-1.4.3-android-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libfreenect2-platform/0.2.0-1.4.3">
+				<filename name="libfreenect2-platform-0.2.0-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/opencv-platform/3.4.3-1.4.3">
+				<filename name="opencv-platform-3.4.3-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/ffmpeg/4.0.2-1.4.3">
+				<filename name="ffmpeg-4.0.2-1.4.3-linux-ppc64le.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flycapture/2.11.3.121-1.4.3">
+				<filename name="flycapture-2.11.3.121-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/gillius/jfxutils/1.0">
+				<filename name="jfxutils-1.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/opencv/3.4.3-1.4.3">
+				<filename name="opencv-3.4.3-1.4.3-android-arm.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/jogl/jogl-all/2.3.2">
+				<filename name="jogl-all-2.3.2-natives-linux-armv6.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/librealsense/1.12.1-1.4.3">
+				<filename name="librealsense-1.12.1-1.4.3-linux-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/tesseract/4.0.0-rc2-1.4.3">
+				<filename name="tesseract-4.0.0-rc2-1.4.3-android-arm64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/leptonica/1.76.0-1.4.3">
+				<filename name="leptonica-1.76.0-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/tesseract/4.0.0-rc2-1.4.3">
+				<filename name="tesseract-4.0.0-rc2-1.4.3-windows-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/jogamp/jogl/jogl-all/2.3.2">
+				<filename name="jogl-all-2.3.2-natives-android-aarch64.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/libfreenect/0.5.3-1.4.3">
+				<filename name="libfreenect-0.5.3-1.4.3-windows-x86.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/apache/commons/commons-math3/3.6.1">
+				<filename name="commons-math3-3.6.1.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/flycapture-platform/2.11.3.121-1.4.3">
+				<filename name="flycapture-platform-2.11.3.121-1.4.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/home/neli/.m2/repository/org/bytedeco/javacpp-presets/opencv/3.4.3-1.4.3">
+				<filename name="opencv-3.4.3-1.4.3-linux-x86_64.jar"/>
+			</fileset>
+		</copy>
+	
+		<mkdir dir="project" />
+		<copy todir="project">
+			<fileset dir="/home/neli/webservices2/ImageOpticalFlowV5/TestFX2">
+				<include name="src/**" />
+			</fileset>
+		</copy>
+		<copy todir="project">
+			<fileset dir="/home/neli/webservices2/ImageOpticalFlowV5/TestFX2">
+				<include name="resource/**" />
+			</fileset>
+		</copy>
+	
+		<mkdir dir="projectRefs" />
+	</target>
+	<target name='do-compile'>
+		<delete dir="build" />
+		<mkdir dir="build/src" />
+		<mkdir dir="build/libs" />
+		<mkdir dir="build/classes" />
+	
+		<!-- Copy project-libs references -->
+		<copy todir="build/libs">
+			<fileset dir="externalLibs">
+				<include name="gluegen-rt-2.3.2-natives-linux-armv6.jar"/>
+				<include name="jogl-all-2.3.2-natives-linux-amd64.jar"/>
+				<include name="gluegen-rt-2.3.2-natives-windows-amd64.jar"/>
+				<include name="flycapture-2.11.3.121-1.4.3-linux-x86.jar"/>
+				<include name="flandmark-1.07-1.4.3-android-arm.jar"/>
+				<include name="leptonica-1.76.0-1.4.3-linux-x86_64.jar"/>
+				<include name="JTransforms-3.1-with-dependencies.jar"/>
+				<include name="humble-video-arch-i686-w64-mingw32-0.3.0.jar"/>
+				<include name="opencv-3.4.3-1.4.3-linux-armhf.jar"/>
+				<include name="opencv-3.4.3-1.4.3-android-x86.jar"/>
+				<include name="leptonica-1.76.0-1.4.3-android-arm64.jar"/>
+				<include name="libdc1394-2.2.5-1.4.3-linux-x86.jar"/>
+				<include name="leptonica-1.76.0-1.4.3-linux-x86.jar"/>
+				<include name="libfreenect-0.5.3-1.4.3-linux-armhf.jar"/>
+				<include name="javacv-1.4.3.jar"/>
+				<include name="jogl-all-2.3.2.jar"/>
+				<include name="videoinput-0.200-1.4.3.jar"/>
+				<include name="flycapture-2.11.3.121-1.4.3-linux-armhf.jar"/>
+				<include name="slf4j-log4j12-1.7.5.jar"/>
+				<include name="artoolkitplus-2.3.1-1.4.3-android-x86.jar"/>
+				<include name="gluegen-rt-2.3.2.jar"/>
+				<include name="librealsense-1.12.1-1.4.3-macosx-x86_64.jar"/>
+				<include name="flycapture-2.11.3.121-1.4.3-windows-x86.jar"/>
+				<include name="leptonica-1.76.0-1.4.3-linux-ppc64le.jar"/>
+				<include name="leptonica-1.76.0-1.4.3-macosx-x86_64.jar"/>
+				<include name="leptonica-1.76.0-1.4.3-windows-x86.jar"/>
+				<include name="opencv-platform-3.4.3-1.4.3.jar"/>
+				<include name="artoolkitplus-2.3.1-1.4.3-windows-x86_64.jar"/>
+				<include name="gluegen-rt-2.3.2-natives-android-armv6.jar"/>
+				<include name="jogl-all-2.3.2-natives-android-armv6.jar"/>
+				<include name="jogl-all-2.3.2-natives-linux-i586.jar"/>
+				<include name="jogl-all-2.3.2-natives-android-aarch64.jar"/>
+				<include name="opencv-3.4.3-1.4.3-linux-x86_64.jar"/>
+				<include name="tesseract-4.0.0-rc2-1.4.3-android-x86.jar"/>
+				<include name="artoolkitplus-2.3.1-1.4.3-android-arm64.jar"/>
+				<include name="artoolkitplus-2.3.1-1.4.3-android-x86_64.jar"/>
+				<include name="ffmpeg-4.0.2-1.4.3-android-arm64.jar"/>
+				<include name="flycapture-platform-2.11.3.121-1.4.3.jar"/>
+				<include name="ffmpeg-4.0.2-1.4.3-linux-x86.jar"/>
+				<include name="leptonica-platform-1.76.0-1.4.3.jar"/>
+				<include name="humble-video-noarch-0.3.0.jar"/>
+				<include name="jogl-all-2.3.2-natives-solaris-amd64.jar"/>
+				<include name="ffmpeg-4.0.2-1.4.3-linux-armhf.jar"/>
+				<include name="leptonica-1.76.0-1.4.3-android-x86.jar"/>
+				<include name="ffmpeg-platform-4.0.2-1.4.3.jar"/>
+				<include name="libdc1394-2.2.5-1.4.3-linux-x86_64.jar"/>
+				<include name="tesseract-4.0.0-rc2-1.4.3-linux-x86_64.jar"/>
+				<include name="flandmark-1.07-1.4.3-android-x86_64.jar"/>
+				<include name="flandmark-1.07-1.4.3-android-arm64.jar"/>
+				<include name="opencv-3.4.3-1.4.3-android-arm64.jar"/>
+				<include name="humble-video-all-0.3.0.jar"/>
+				<include name="jogl-all-2.3.2-natives-windows-i586.jar"/>
+				<include name="flandmark-1.07-1.4.3-linux-x86.jar"/>
+				<include name="libfreenect-0.5.3-1.4.3.jar"/>
+				<include name="opencv-3.4.3-1.4.3-windows-x86.jar"/>
+				<include name="flandmark-1.07-1.4.3-windows-x86_64.jar"/>
+				<include name="flycapture-2.11.3.121-1.4.3-linux-x86_64.jar"/>
+				<include name="JLargeArrays-1.5.jar"/>
+				<include name="artoolkitplus-2.3.1-1.4.3-windows-x86.jar"/>
+				<include name="ffmpeg-4.0.2-1.4.3-linux-x86_64.jar"/>
+				<include name="libfreenect-0.5.3-1.4.3-windows-x86.jar"/>
+				<include name="tesseract-4.0.0-rc2-1.4.3-linux-armhf.jar"/>
+				<include name="leptonica-1.76.0-1.4.3-android-x86_64.jar"/>
+				<include name="libfreenect-0.5.3-1.4.3-macosx-x86_64.jar"/>
+				<include name="leptonica-1.76.0-1.4.3-linux-armhf.jar"/>
+				<include name="tesseract-4.0.0-rc2-1.4.3-linux-x86.jar"/>
+				<include name="libfreenect-0.5.3-1.4.3-windows-x86_64.jar"/>
+				<include name="gluegen-rt-2.3.2-natives-linux-armv6hf.jar"/>
+				<include name="arpack_combined_all-0.1.jar"/>
+				<include name="flandmark-platform-1.07-1.4.3.jar"/>
+				<include name="commons-collections4-4.2.jar"/>
+				<include name="gluegen-rt-2.3.2-natives-linux-amd64.jar"/>
+				<include name="jogl-all-2.3.2-natives-solaris-i586.jar"/>
+				<include name="opencv-3.4.3-1.4.3-linux-ppc64le.jar"/>
+				<include name="libdc1394-2.2.5-1.4.3-windows-x86_64.jar"/>
+				<include name="tesseract-platform-4.0.0-rc2-1.4.3.jar"/>
+				<include name="poi-4.0.0.jar"/>
+				<include name="libfreenect-0.5.3-1.4.3-linux-x86.jar"/>
+				<include name="flandmark-1.07-1.4.3.jar"/>
+				<include name="libfreenect-0.5.3-1.4.3-linux-x86_64.jar"/>
+				<include name="flycapture-2.11.3.121-1.4.3.jar"/>
+				<include name="tesseract-4.0.0-rc2-1.4.3-android-arm.jar"/>
+				<include name="leptonica-1.76.0-1.4.3-windows-x86_64.jar"/>
+				<include name="commons-math3-3.6.1.jar"/>
+				<include name="opencv-3.4.3-1.4.3-ios-x86_64.jar"/>
+				<include name="libdc1394-2.2.5-1.4.3-macosx-x86_64.jar"/>
+				<include name="leptonica-1.76.0-1.4.3-android-arm.jar"/>
+				<include name="libdc1394-2.2.5-1.4.3-windows-x86.jar"/>
+				<include name="tesseract-4.0.0-rc2-1.4.3-android-x86_64.jar"/>
+				<include name="opencv-3.4.3-1.4.3-macosx-x86_64.jar"/>
+				<include name="humble-video-arch-x86_64-pc-linux-gnu6-0.3.0.jar"/>
+				<include name="javacpp-1.4.3.jar"/>
+				<include name="videoinput-0.200-1.4.3-windows-x86.jar"/>
+				<include name="flandmark-1.07-1.4.3-windows-x86.jar"/>
+				<include name="flandmark-1.07-1.4.3-macosx-x86_64.jar"/>
+				<include name="librealsense-1.12.1-1.4.3-windows-x86.jar"/>
+				<include name="libfreenect2-0.2.0-1.4.3-linux-x86_64.jar"/>
+				<include name="javacv-platform-1.4.3.jar"/>
+				<include name="librealsense-1.12.1-1.4.3.jar"/>
+				<include name="gluegen-rt-2.3.2-natives-linux-i586.jar"/>
+				<include name="opencv-3.4.3-1.4.3.jar"/>
+				<include name="opencv-3.4.3-1.4.3-ios-arm64.jar"/>
+				<include name="tesseract-4.0.0-rc2-1.4.3-windows-x86_64.jar"/>
+				<include name="gluegen-rt-main-2.3.2.jar"/>
+				<include name="jogl-all-2.3.2-natives-linux-armv6.jar"/>
+				<include name="jfxutils-1.0.jar"/>
+				<include name="flandmark-1.07-1.4.3-linux-ppc64le.jar"/>
+				<include name="gluegen-rt-2.3.2-natives-windows-i586.jar"/>
+				<include name="gluegen-rt-2.3.2-natives-macosx-universal.jar"/>
+				<include name="netlib-java-0.9.3.jar"/>
+				<include name="tesseract-4.0.0-rc2-1.4.3-android-arm64.jar"/>
+				<include name="artoolkitplus-2.3.1-1.4.3-linux-ppc64le.jar"/>
+				<include name="flandmark-1.07-1.4.3-linux-armhf.jar"/>
+				<include name="libdc1394-2.2.5-1.4.3-linux-armhf.jar"/>
+				<include name="artoolkitplus-platform-2.3.1-1.4.3.jar"/>
+				<include name="ffmpeg-4.0.2-1.4.3-linux-ppc64le.jar"/>
+				<include name="edu-mines-jtk-1.1.0.jar"/>
+				<include name="libfreenect-platform-0.5.3-1.4.3.jar"/>
+				<include name="tesseract-4.0.0-rc2-1.4.3-macosx-x86_64.jar"/>
+				<include name="libdc1394-2.2.5-1.4.3.jar"/>
+				<include name="flandmark-1.07-1.4.3-android-x86.jar"/>
+				<include name="opencv-3.4.3-1.4.3-android-arm.jar"/>
+				<include name="artoolkitplus-2.3.1-1.4.3.jar"/>
+				<include name="leptonica-1.76.0-1.4.3.jar"/>
+				<include name="opencv-3.4.3-1.4.3-linux-x86.jar"/>
+				<include name="tesseract-4.0.0-rc2-1.4.3-windows-x86.jar"/>
+				<include name="ffmpeg-4.0.2-1.4.3-macosx-x86_64.jar"/>
+				<include name="artoolkitplus-2.3.1-1.4.3-macosx-x86_64.jar"/>
+				<include name="gluegen-rt-2.3.2-natives-android-aarch64.jar"/>
+				<include name="videoinput-0.200-1.4.3-windows-x86_64.jar"/>
+				<include name="flandmark-1.07-1.4.3-linux-x86_64.jar"/>
+				<include name="tesseract-4.0.0-rc2-1.4.3-linux-ppc64le.jar"/>
+				<include name="commons-codec-1.10.jar"/>
+				<include name="slf4j-api-1.7.5.jar"/>
+				<include name="videoinput-platform-0.200-1.4.3.jar"/>
+				<include name="gluegen-rt-2.3.2-natives-solaris-i586.jar"/>
+				<include name="humble-video-arch-x86_64-w64-mingw32-0.3.0.jar"/>
+				<include name="artoolkitplus-2.3.1-1.4.3-linux-x86_64.jar"/>
+				<include name="ffmpeg-4.0.2-1.4.3-android-x86.jar"/>
+				<include name="opencv-3.4.3-1.4.3-android-x86_64.jar"/>
+				<include name="librealsense-1.12.1-1.4.3-linux-x86_64.jar"/>
+				<include name="flycapture-2.11.3.121-1.4.3-windows-x86_64.jar"/>
+				<include name="artoolkitplus-2.3.1-1.4.3-android-arm.jar"/>
+				<include name="commons-io-2.4.jar"/>
+				<include name="libfreenect2-0.2.0-1.4.3-macosx-x86_64.jar"/>
+				<include name="ffmpeg-4.0.2-1.4.3-android-arm.jar"/>
+				<include name="jogl-all-2.3.2-natives-macosx-universal.jar"/>
+				<include name="libfreenect2-0.2.0-1.4.3-linux-x86.jar"/>
+				<include name="jogl-all-2.3.2-natives-windows-amd64.jar"/>
+				<include name="ffmpeg-4.0.2-1.4.3-android-x86_64.jar"/>
+				<include name="ffmpeg-4.0.2-1.4.3.jar"/>
+				<include name="opencv-3.4.3-1.4.3-windows-x86_64.jar"/>
+				<include name="libfreenect2-platform-0.2.0-1.4.3.jar"/>
+				<include name="ffmpeg-4.0.2-1.4.3-windows-x86.jar"/>
+				<include name="gluegen-rt-2.3.2-natives-solaris-amd64.jar"/>
+				<include name="libfreenect-0.5.3-1.4.3-linux-ppc64le.jar"/>
+				<include name="log4j-1.2.17.jar"/>
+				<include name="librealsense-platform-1.12.1-1.4.3.jar"/>
+				<include name="libfreenect2-0.2.0-1.4.3-windows-x86_64.jar"/>
+				<include name="librealsense-1.12.1-1.4.3-linux-x86.jar"/>
+				<include name="librealsense-1.12.1-1.4.3-windows-x86_64.jar"/>
+				<include name="libfreenect2-0.2.0-1.4.3.jar"/>
+				<include name="libdc1394-2.2.5-1.4.3-linux-ppc64le.jar"/>
+				<include name="libdc1394-platform-2.2.5-1.4.3.jar"/>
+				<include name="artoolkitplus-2.3.1-1.4.3-linux-armhf.jar"/>
+				<include name="ffmpeg-4.0.2-1.4.3-windows-x86_64.jar"/>
+				<include name="artoolkitplus-2.3.1-1.4.3-linux-x86.jar"/>
+				<include name="jogl-all-main-2.3.2.jar"/>
+				<include name="tesseract-4.0.0-rc2-1.4.3.jar"/>
+				<include name="jfreechart-1.5.0.jar"/>
+				<include name="jogl-all-2.3.2-natives-linux-armv6hf.jar"/>
+			</fileset>
+		</copy>
+	
+		<!-- Copy project references -->
+	
+		<!-- Copy project sources itself -->
+		<copy todir="build/src">
+			<fileset dir="project/src">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+		<copy todir="build/src">
+			<fileset dir="project/resource">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+	
+		<javac includeantruntime="false" source="1.8" target="1.8" srcdir="build/src" destdir="build/classes" encoding="UTF-8">
+			<classpath>
+				<fileset dir="build/libs">
+					<include name="*"/>
+				</fileset>
+			</classpath>
+		</javac>
+	
+		<!-- Copy over none Java-Files -->
+		<copy todir="build/classes">
+		<fileset dir="project/src">
+			<exclude name="**/*.java"/>
+		</fileset>
+		<fileset dir="project/resource">
+			<exclude name="**/*.java"/>
+		</fileset>
+		</copy>
+	
+	
+	</target>
+	<target name="do-deploy" depends="setup-staging-area, do-compile, init-fx-tasks">
+		<delete file="dist"/>
+		<delete file="deploy" />
+	
+		<mkdir dir="dist" />
+		<mkdir dir="dist/libs" />
+	
+		<copy todir="dist/libs">
+			<fileset dir="externalLibs">
+				<include name="*" />
+			</fileset>
+		</copy>
+	
+	
+		<fx:resources id="appRes">
+			<fx:fileset dir="dist" includes="TestFX2.jar"/>
+			<fx:fileset dir="dist" includes="libs/*"/>
+		</fx:resources>
+	
+		<fx:application id="fxApplication"
+			name="Contractility"
+			mainClass="controllers.Main"
+		/>
+	
+		<mkdir dir="build/classes/META-INF" />
+	
+	
+	
+		<fx:jar destfile="dist/TestFX2.jar">
+			<fx:application refid="fxApplication"/>
+			<fileset dir="build/classes">
+			</fileset>
+			<fx:resources refid="appRes"/>
+	
+			<manifest>
+				<attribute name="Implementation-Vendor" value="BioComp"/>
+				<attribute name="Implementation-Title" value="Contractility"/>
+				<attribute name="Implementation-Version" value="1.0"/>
+				<attribute name="JavaFX-Feature-Proxy" value="None"/>
+			</manifest>
+		</fx:jar>
+	
+	
+	
+	
+	</target>
+</project>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Controller_2c_ImagesNew">
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="cmdBack" mnemonicParsing="false" onAction="#back" prefHeight="45.0" prefWidth="45.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+            <Button fx:id="cmdNext" mnemonicParsing="false" onAction="#navigateNextPage" prefHeight="45.0" prefWidth="45.0" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+            <Button fx:id="cmdGroupLeft" mnemonicParsing="false" onAction="#handleScrollGroup" text="&lt;" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+            <Button fx:id="cmdGroupRight" mnemonicParsing="false" onAction="#handleScrollGroup" text="&gt;" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+            <ListView fx:id="listviewchooseimg" onScroll="#handleListViewScroll" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="7" GridPane.rowIndex="1" GridPane.rowSpan="6" />
+            <Label text="Images:" GridPane.columnIndex="3" GridPane.columnSpan="7" GridPane.valignment="BOTTOM" />
+            <Label fx:id="lblGroupName" GridPane.columnIndex="5" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+         </children>
+      </GridPane>
+   </center>
+   <top>
+      <VBox maxHeight="300.0" prefHeight="100.0" style="-fx-background-color: #000;" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+               <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Edit">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Help">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+            <Region fx:id="region" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1000.0" style="-fx-background-image: url('/LogoCW2.png'); -fx-background-size: stretch; -fx-background-repeat: no-repeat; -fx-background-color: #fff;" />
+         </children>
+      </VBox>
+   </top>
+</BorderPane>

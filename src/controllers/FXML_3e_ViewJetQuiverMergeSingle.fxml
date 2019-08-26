@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.embed.swing.SwingNode?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Controller_3e_ViewJetQuiverMergeSingle">
+   <top>
+      <VBox maxHeight="300.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+               <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                     <items>
+                        <Menu mnemonicParsing="false" text="New Project">
+                           <items>
+                              <MenuItem fx:id="menuNewImage" mnemonicParsing="false" onAction="#handleMenuNewImage" text="Image" />
+                              <MenuItem fx:id="menuNewVideo" mnemonicParsing="false" onAction="#handleMenuNewVideo" text="Video" />
+                           </items>
+                        </Menu>
+                        <MenuItem mnemonicParsing="false" onAction="#handleCheckProgress" text="Check Progress" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleReinitialize" text="Reinitialize" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleClose" text="Close" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Color Settings">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleColors" text="Change Plot Configs" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Options">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#showAdvancedJet" text="Arrow Size" />
+                        <MenuItem mnemonicParsing="false" onAction="#showAdvancedMerge" text="Cell Segmentation" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Export">
+                     <items>
+                        <Menu mnemonicParsing="false" text="Current Image">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#handleExportCurrentJPG" text="JPG" />
+                              <MenuItem mnemonicParsing="false" onAction="#handleExportCurrentPNG" text="PNG" />
+                              <MenuItem mnemonicParsing="false" onAction="#handleExportCurrentTIFF" text="TIFF" />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Current Image Set">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#handleExportCurrentJPG2" text="JPG" />
+                              <MenuItem mnemonicParsing="false" onAction="#handleExportCurrentPNG2" text="PNG" />
+                              <MenuItem mnemonicParsing="false" onAction="#handleExportCurrentTIFF2" text="TIFF" />
+                              <MenuItem mnemonicParsing="false" onAction="#handleExportCurrentVideo" text="MP4" />
+                           </items>
+                        </Menu>
+                        <MenuItem mnemonicParsing="false" onAction="#handleExportScale" text="Export Scale" />
+                     	<Menu mnemonicParsing="false" text="Chart Data">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#handleExportTSV" text="TSV" />
+                            <MenuItem mnemonicParsing="false" onAction="#handleExportXLS" text="XLS" />
+                          </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Chart Image">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#handleExportJPEG" text="JPEG" />
+                              <MenuItem mnemonicParsing="false" onAction="#handleExportPNG" text="PNG" />
+                              <MenuItem mnemonicParsing="false" onAction="#handleExportTIFF" text="TIFF" />
+                          </items>
+                        </Menu>
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Help">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <BorderPane BorderPane.alignment="CENTER">
+         <left>
+            <Button id="glass-grey" fx:id="cmdBack" mnemonicParsing="false" onAction="#back" prefHeight="40.0" prefWidth="40.0" stylesheets="@../../../../../../Desktop/ContractionWave-master/controllers/button_styles.css" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="30.0" left="80.0" />
+               </BorderPane.margin></Button>
+         </left>
+      </BorderPane>
+   </bottom>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label alignment="TOP_CENTER" text="View Vector and Magnitude Fields:" GridPane.columnIndex="2" GridPane.columnSpan="7" GridPane.halignment="CENTER">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="9" GridPane.rowIndex="1" GridPane.rowSpan="3">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT">
+                           <children>
+                              <CheckBox fx:id="mergeCheck" mnemonicParsing="false" text="Original Image" />
+                              <CheckBox fx:id="jetCheck" mnemonicParsing="false" text="Magnitude Field">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </VBox.margin></CheckBox>
+                              <CheckBox fx:id="quiverCheck" mnemonicParsing="false" text="Vector Field">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin></CheckBox>
+                           </children>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" prefWidth="20.0" />
+                     </children>
+                  </HBox>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <GridPane>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Mask Threshold (μm/s):" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Label>
+                              <Spinner fx:id="spinnerMask" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" />
+                                 </GridPane.margin></Spinner>
+                              <Label text="Color Scale Start (μm/s):" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Label>
+                              <Spinner fx:id="spinnerScaleStart" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" />
+                                 </GridPane.margin></Spinner>
+                              <Spinner fx:id="spinnerScaleEnd" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Color Scale End (μm/s):" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" prefWidth="20.0" />
+                        <ToggleButton fx:id="togglebuttonContour" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#toggleContour" text="Contour Filter is OFF" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox maxHeight="200.0" maxWidth="640.0" prefHeight="200.0" prefWidth="640.0" GridPane.columnIndex="1" GridPane.columnSpan="10" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.rowSpan="8" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+               <children>
+                  <GridPane HBox.hgrow="ALWAYS">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView fx:id="scaleImgView" fitHeight="150.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES" />
+                        <ImageView fx:id="imgview1" fitHeight="200.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+            <HBox maxHeight="200.0" maxWidth="640.0" prefHeight="200.0" prefWidth="640.0" GridPane.columnIndex="1" GridPane.columnSpan="10" GridPane.halignment="CENTER" GridPane.rowIndex="12" GridPane.rowSpan="5" GridPane.valignment="BOTTOM">
+               <children>
+                  <GridPane HBox.hgrow="ALWAYS">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <SwingNode fx:id="chartNode" />
+                     </children>
+                  </GridPane>
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="10.0" />
+               </GridPane.margin>
+            </HBox>
+            <Slider fx:id="sliderGroups" GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.halignment="CENTER" GridPane.rowIndex="18" />
+            <Button fx:id="cmdSliderPlay" mnemonicParsing="false" onAction="#handlePlayStopButton" text="Play" GridPane.columnIndex="9" GridPane.rowIndex="18">
+               <GridPane.margin>
+                  <Insets left="20.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Label text="Frame per Second (Fps):" GridPane.columnIndex="6" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="17" GridPane.valignment="CENTER" />
+            <Spinner fx:id="spinnerFPS" editable="true" GridPane.columnIndex="9" GridPane.rowIndex="17">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Spinner>
+            <HBox fx:id="emptyBoxSize" visible="false">
+               <children>
+                  <VBox visible="false" />
+               </children>
+            </HBox>
+            <Label prefHeight="16.0" text="Current Image:" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="17" />
+            <Label fx:id="currentImgName" prefHeight="16.0" prefWidth="255.0" text="..........." GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="17">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Label>
+            <CheckBox fx:id="checkSeconds" mnemonicParsing="false" text="Millisec. to Sec." GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="17">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </CheckBox>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>
